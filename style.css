@@ -1,0 +1,273 @@
+/* General Styles */
+
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f8f9fa;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  display: none; /* Remove any pseudo-elements causing space */
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation Bar */
+.menu-bar {
+  background-color: #5cc5d1;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-bar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.menu-bar ul li {
+  margin: 0 20px;
+}
+
+.menu-bar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-bar ul li a:hover {
+  color: #d5ebed;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(92, 197, 209, 0.8), rgba(213, 235, 237, 0.8)), url('hero-bg.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 0;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 600;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #2c403f;
+}
+
+
+/* Sections */
+.section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.about-section, .goals-section, .interests-section {
+  background-color: white;
+}
+
+.contact-section {
+  background-color: #d5ebed;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Image Styling */
+.image-box {
+   margin: 20px auto;
+  width: 300px; /* Adjust size */
+  height: 300px;
+  border-radius: 50%; /* Makes it circular */
+  overflow: hidden;
+  border: 4px solid #5cc5d1; /* Adds a nice border */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Interests Section Container */
+.interests-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* Adjust this value for spacing between images */
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  margin: 20px auto;
+  max-width: 800px; 
+}
+
+.image-box1 {
+   margin: 20px auto;
+  width: 250px; /* Adjust size */
+  height: 250px;
+  border-radius: 50%; /* Makes it circular */
+  overflow: hidden;
+  border: 4px solid #5cc5d1; /* Adds a nice border */
+  display: flex;
+  justify-content: center;
+  align-items: linear-gradient;
+}
+
+.image-box1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Footer */
+footer {
+  background: #5cc5d1;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.fade-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sidebar Styling */
+.sidebar {
+   width: 20%;
+  height: 100vh;
+  position: fixed;
+  right: -20%; /* Start off-screen */
+  top: 0;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: right 0.4s ease-in-out;
+}
+
+.sidebar-button {
+  z-index: 1100; /* Ensure it stays on top */
+  position: fixed;
+  right: 0%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  
+}
+
+/* Adjust position when sidebar is closed */
+.sidebar.closed + .sidebar-button {
+  right: 0;
+}
+
+/* Button hover effect */
+.sidebar-button:hover {
+  background-color: #2575fc;
+}
+
+
+/* Sidebar Links */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.sidebar ul li a:hover {
+  color: #5cc5d1;
+}
+
+/* Sidebar Images */
+.sidebar img {
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+
+/* Hide sidebar when closed */
+.sidebar.closed {
+  transform: translateX(20%);
+}
+
+/* Show sidebar when open */
+.sidebar:not(.closed) {
+  right: 0;
+}
+
+/* Adjust button position when sidebar is open */
+.sidebar:not(.closed) + .sidebar-button {
+  right: 20%;
+}
+
+/* Style for the toggle button */
+.button-container {
+  position: absolute;
+  left: -40px; /* Keeps button visible when sidebar is closed */
+  top: 20px;
+}
+
+.button-3d {
+  cursor: pointer;
+}
+
+
+
+
