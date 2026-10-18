@@ -1,214 +1,257 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Resume Website</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Favicon -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<!-- For modern browsers -->
-<link rel="icon" type="image/png" href="favicon.ico">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Odhran Jennings</title>
+<meta name="description" content="Odhran Jennings, final-year Computer Science student at Ulster University, looking for graduate software roles from summer 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #E4E8EC;
+    --ink: #14213D;
+    --blue: #1B3FAF;
+    --paper: #FFFFFF;
+    --muted: #556070;
+    --rail: #8C96A1;
+    --sans: "Bricolage Grotesque", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--steel);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  a { color: var(--blue); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+ 
+  /* top bar */
+  .top { display: flex; justify-content: flex-end; gap: 22px; padding: 22px 0; font-size: .95rem; }
+  .top a { color: var(--ink); text-decoration: none; font-weight: 600; }
+  .top a:hover { color: var(--blue); }
+ 
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; padding: 40px 0 56px; }
+  h1 {
+    font-size: clamp(3rem, 9vw, 6rem);
+    font-weight: 800;
+    line-height: .95;
+    letter-spacing: -.035em;
+    margin: 0 0 24px;
+    font-variation-settings: "opsz" 96;
+  }
+  .lede { font-size: 1.25rem; max-width: 34em; margin: 0 0 18px; }
+  .seeking { font-weight: 600; color: var(--blue); margin: 0 0 28px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 12px 20px; border-radius: 6px;
+    font-weight: 600; text-decoration: none; border: 2px solid var(--ink);
+  }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--blue); border-color: var(--blue); }
+  .btn.ghost { color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--blue); color: var(--blue); }
+  .photo {
+    width: 190px; height: 230px; object-fit: cover; border-radius: 8px;
+    border: 6px solid var(--paper); box-shadow: 0 10px 24px rgba(20,33,61,.18);
+    transform: rotate(2deg);
+  }
+ 
+  h2 { font-size: clamp(1.75rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 32px; max-width: 40em; }
+  section { padding: 56px 0; }
+ 
+  /* the rail */
+  .rail-zone { position: relative; padding-top: 6px; }
+  .rail {
+    height: 16px; border-radius: 8px;
+    background: linear-gradient(#F4F6F8 0%, #C3CAD1 35%, var(--rail) 70%, #6E7781 100%);
+    box-shadow: 0 2px 3px rgba(20,33,61,.25);
+    position: relative; z-index: 2;
+  }
+  .tickets {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    margin-top: -6px; padding: 0 8px;
+  }
+  .ticket-wrap { filter: drop-shadow(0 6px 10px rgba(20,33,61,.16)); transform-origin: top center; }
+  .ticket-wrap:nth-child(1) { transform: rotate(-1.2deg); }
+  .ticket-wrap:nth-child(2) { transform: rotate(.9deg); }
+  .ticket-wrap:nth-child(3) { transform: rotate(-.5deg); }
+  .ticket {
+    background: var(--paper);
+    font-family: var(--mono);
+    font-size: .9rem;
+    line-height: 1.55;
+    padding: 26px 22px 34px;
+    --z: 9px;
+    -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--z)) 100%;
+            mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--z)) 100%;
+  }
+  .ticket .meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .8rem; border-bottom: 2px dashed #C9CED4; padding-bottom: 10px; margin-bottom: 14px; }
+  .ticket h3 { font-family: var(--sans); font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; margin: 0 0 10px; }
+  .ticket p { margin: 0 0 14px; }
+  .ticket ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .ticket li { padding-left: 1.4em; position: relative; }
+  .ticket li::before { content: "1x"; position: absolute; left: 0; color: var(--muted); }
+  .stamp {
+    display: inline-block; border: 2px solid var(--blue); color: var(--blue);
+    padding: 2px 10px; border-radius: 4px; font-weight: 600; transform: rotate(-3deg);
+  }
+ 
+  /* timeline */
+  .history { list-style: none; padding: 0; margin: 24px 0 0; border-top: 2px solid var(--ink); }
+  .history li { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid #C3CAD1; }
+  .history time { color: var(--muted); font-weight: 600; }
+  .history strong { display: block; font-size: 1.15rem; }
+  .history span { color: var(--muted); }
+ 
+  .skills { display: grid; grid-template-columns: 190px 1fr; gap: 10px 24px; margin: 0; }
+  .skills dt { font-weight: 800; }
+  .skills dd { margin: 0; }
+ 
+  .outside p { max-width: 38em; margin: 16px 0 0; font-size: 1.15rem; }
+ 
+  footer { padding: 0 0 72px; }
+  footer .wrap > div { border-top: 2px solid var(--ink); padding-top: 48px; }
+  footer p { font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 800; letter-spacing: -.02em; margin: 0 0 12px; }
+  footer p a { display: block; font-size: clamp(1.15rem, 4.6vw, 2rem); overflow-wrap: anywhere; }
+  footer small { color: var(--muted); }
+ 
+  /* one load moment: tickets drop onto the rail */
+  @media (prefers-reduced-motion: no-preference) {
+    .ticket-wrap { animation: clip-on .7s cubic-bezier(.2,.9,.3,1.2) both; }
+    .ticket-wrap:nth-child(2) { animation-delay: .12s; }
+    .ticket-wrap:nth-child(3) { animation-delay: .24s; }
+    @keyframes clip-on { from { opacity: 0; translate: 0 -28px; } }
+  }
+ 
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; padding-top: 16px; }
+    .photo { order: -1; width: 130px; height: 156px; }
+    .tickets { grid-template-columns: 1fr; gap: 22px; max-width: 460px; }
+    .history li, .skills { grid-template-columns: 1fr; gap: 4px; }
+    .skills dd { margin-bottom: 12px; }
+    .top { justify-content: flex-start; }
+  }
+</style>
 </head>
 <body>
-<div class="sidebar closed" id="sidebar">
- 
-   <h3>Quick Links</h3>
-    <ul>
-	<p><br></p>
-	<p><br></p>
-	<h1> My Projects </h1>
-	<p>This is where my projects will be added!</p>
-	<p>This website is in it's early days, but soon this section will be full of my own personal projects for everyone to be astononished by! </p>
-	
-    </ul>
-    
-  </div>
-<button id="toggleSidebar" class="sidebar-button">
-  <span id="toggleIcon">❮</span>
-</button>
-
-  <nav class="menu-bar">
-	  <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#goals">Goals</a></li>
-        <li><a href="#interests">Interests</a></li>
-      </ul>
-    </div>
+<div class="wrap">
+  <nav class="top" aria-label="Contact links">
+    <a href="mailto:jennings-o3@ulster.ac.uk">Email</a>
+    <a href="https://github.com/Odhran132">GitHub</a>
+    <a href="https://www.linkedin.com/in/odhran-jennings/">LinkedIn</a>
   </nav>
-
-  <section id="home" class="section home-section">
-    <div class="hero">
-      <h1>Welcome to My Own Online Wiki!</h1>
-      <p>Hello, my name is Odhran Jennings and I'm a Dedicated and hardworking Computer Science undergraduate with a strong foundation in <br>
-		programming, problem-solving, and teamwork. Experience in hotel hospitality and kitchen operations, <br>
-		demonstrating excellent customer service, adaptability, and time management skills in fast-paced <br>
-		environments. Passionate about leveraging knowledge to develop innovative solutions while <br>
-		maintaining a strong work ethic and attention to detail. Quick learner with a proactive approach to challenges. </p>
-    </div>
-  </section>
-
-  <section id="about" class="section about-section">
-    <div class="container">
-      <h2>About Me</h2>
-      <p> I grew up in Northern Ireland County Down. From a young age I was always
-		intrigued and curious in relation to ongoing technological advancements within the
-		world, it all was very interesting for me, and that curiosity never left. I’m very much a
-		physical person in relation to keeping myself fit and the enjoyment and passion I
-		have for sports and self improvement, this is something I hope to integrate with my
-		software development skill set within the future as I hope in the future to mix my
-		passion and love for sport, with my passion for software development and the
-		integration of automating new things within this vast and growing society we live in.
-		My passion for technology stemmed from when I was a child and I always was
-		intrigued with how systems worked such as old Nintendo systems (N64, Gamecube
-		etc). The interest for older systems allowed myself to learn from the bottom up in
-		terms of understanding old concepts then in tune with learning newer concepts
-		within technology for nowadays. </p>
-		
-		
-		
-		
-		<p> With all of this, my first individual project was
-		emulating an old gaming system OS onto a raspberry pie when I was in my early
-		teens, this gave me a taste for starting and completing projects. From then most
-		projects of my own (disregarding small/silly projects in my spare time) would be
-		academic related and gave me insights to different IDE’s and different languages. I
-		never joined the course Computer Science purely for the certification at the end of
-		the tunnel, it was the possibilities of expanding my skill set to new heights and
-		getting a taste of the industry is what roped me in and how glad I am for this decision.
-		Overall, my passion for this field ran within me from a very young age and it shows
-		through my demeanour and work ethic. In the future I wish to start new projects once
-		I find myself available to start projects, such as a productivity app/piece of software,
-		location based crime dashboard, a pandemic simulation, an AI chatbot (with Node.js)
-		and many more so please stay posted to this website.  </p>
-      <div class="PfP image-box">
-        <img src="PfP.jpg" alt="My Photo">
+ 
+  <header class="hero">
+    <div>
+      <h1>Odhran<br>Jennings</h1>
+      <p class="lede">I'm a final-year Computer Science student at Ulster University, building an LLM tool that works out why software broke. Before code, I spent three years in a hotel kitchen, working my way up from kitchen porter to banquet chef.</p>
+      <p class="seeking">Looking for graduate software roles from summer 2027.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:jennings-o3@ulster.ac.uk">Email me</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/odhran-jennings/">Connect on LinkedIn</a>
       </div>
     </div>
-  </section>
-
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Academic Email: jennings-o3@ulster.ac.uk</p>
-	  <p>Business Email: dagurutees@gmail.com</p>
-      <p>Phone: +075 12858594</p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/odhran-jennings/">My LinkedIn</a></p>
-	  <p>Handshake: <a href="https://ulster.joinhandshake.co.uk/profiles/1395100">My Handshake</a></p>
-	  <p>GitHub: <a href="https://github.com/Odhran132">My GitHub</a></p>
-
-    </div>
-  </section>
-
-  <section id="goals" class="section goals-section">
-    <div class="container">
-      <h2>My Goals</h2>
-      <p>My absolute main goal is to expand my skill set within this field/industry to it's maximum, and we all know this can only be done through new experiences and building new projects outside your comfort zone. 
-	     This is why I love building things—whether it’s tools that make life easier, experiments with tech, or just weird little projects that spark curiosity. 
-		 When I find the time, here’s some of the stuff I’d love to tackle:</p>
-		 
-		 <br> </br>
-		 
-		<p>Projects I’m Excited About:</p>
-			<p>•	A Productivity App: Something simple but powerful—maybe for focus, habit-building, or just wrangling the chaos of daily tasks. </p>
-			<p>•	Crime Data Dashboard: A clear, real-time map showing crime trends in different areas. I think data should be accessible, not hidden in spreadsheets.</p>
-			<p>•	Pandemic Simulator: A sandbox to play with how diseases spread. Less "doom-scrolling news" and more "what if we tried this?"</p>
-			<p>•	A Chatbot That Doesn’t Feel Robotic: Built with Node.js, because why not? Maybe for fun, maybe for practical use—we’ll see where it goes.</p>
-			
-			<br> </br>
-		
-		
-		<p>Other Random Ideas: </p>
-			<p>•	A "Where’s My Money Going?" App: Budgeting tools for people who hate budgeting. Automatic insights, zero jargon.</p>
-			<p>•	AR/VR Experiments: Silly or useful mini-games—like visualizing your Spotify playlist in 3D or a virtual tour of obscure historical spots.</p>
-			<p>•	Neighbourhood Watch, But Digital: A place to share local updates, like lost pets, events, or which spots has the best wifi.</p>
- </p>
-    </div>
-  </section>
-
-  <section id="interests" class="section interests-section">
-    <div class="container">
-      <h2>My Interests</h2>
-	  
-	  <div class="interests-container">
-	  <div class="Eve image-box1">
-        <img src="everton.jpg" alt="Everton">
+    <img class="photo" src="PfP.jpg" alt="Photo of Odhran Jennings" onerror="this.remove()">
+  </header>
+</div>
+ 
+<section aria-labelledby="projects">
+  <div class="wrap">
+    <h2 id="projects">On the rail</h2>
+    <p class="sub">What I'm building now. In a kitchen, the rail is where the orders hang.</p>
+    <div class="rail-zone">
+      <div class="rail" aria-hidden="true"></div>
+      <div class="tickets">
+        <article class="ticket-wrap">
+          <div class="ticket">
+            <div class="meta"><span>Honours project</span><span>2026–27</span></div>
+            <h3>LLM root cause analysis</h3>
+            <p>Takes a software incident and its logs, finds similar past incidents and documentation, and asks an LLM for the most likely root cause, with the evidence behind it.</p>
+            <ul>
+              <li>Java</li>
+              <li>Retrieval-augmented generation</li>
+              <li>Model chosen by zero-shot evaluation</li>
+            </ul>
+            <span class="stamp">In progress</span>
+          </div>
+        </article>
+        <article class="ticket-wrap">
+          <div class="ticket">
+            <div class="meta"><span>Personal app</span><span>2025–now</span></div>
+            <h3>FoodAdvisor</h3>
+            <p>Scan a food barcode to see calories and macros, plus an ingredient score from 0 to 100 that flags additives worth avoiding.</p>
+            <ul>
+              <li>React Native (Expo)</li>
+              <li>Node.js</li>
+              <li>Open Food Facts API</li>
+            </ul>
+            <span class="stamp">Next: food diary</span>
+          </div>
+        </article>
+        <article class="ticket-wrap">
+          <div class="ticket">
+            <div class="meta"><span>Group project</span><span>Year 2</span></div>
+            <h3>Carbon Footprint Tracker</h3>
+            <p>An Android app built with a student team so people can track and cut their carbon footprint.</p>
+            <ul>
+              <li>Android Studio</li>
+            </ul>
+            <span class="stamp">Served</span>
+          </div>
+        </article>
       </div>
-	  
-	  <div class="BL image-box1">
-        <img src="BL.jpg" alt="BL">
-      </div>
-	  
-	  <div class="travel image-box1">
-        <img src="travel.jpg" alt="Travel">
-      </div>
-	  
-	  <div class="monke image-box1">
-        <img src="monke.jpg" alt="Monke">
-      </div>
-	  </div>
-	  
-	  
-	  <br> </br>
-	  
-	  <p> Cooking  </p>
-	  
-	  <p> From working in kitchens since I was was 15, from cleaning dishes to making them- the ability to make something from mostly nothing and be able to make it your own is a different feeling of self-accomplishment.
-		In a sense it's a similar but more intense enviroment compared to making software within a team, with communication and being a leader being essential. These reasons explain why I love what I do and hearing the compliments at the end of day make it all worth it.</p>
-	  
-	  <br> </br>
-	  
-	  <p> Everton FC  </p>
-	  
-	  <p> Yes, I voluntarily chose this life. Supporting Everton is equal parts burning passion and pain (mostly), but I wouldn’t have it any other way. 
-	  Whether they’re thrilling or (more often) testing my patience, you’ll find me glued to the match. One thing is for certain is that my sense of loyality is a serious force to be reckoned with. </p>
-	  
-	  <br> </br>
-	  
-	  <p> Sports: Gym & Golf  </p>
-	  
-	  <p> The gym is where I clear my head and push myself—even if some days, just showing up feels like a win. Golf, on the other hand, is where I embrace humility. 
-	  My swing is a work in progress, but there’s no better way to unwind than chasing a tiny ball across acres of grass. </p>
-	  
-	  <br> </br>
-	  
-	  <p> Travelling  </p>
-	  
-	  <p> I love playing tourist—getting lost in new cities, stumbling on hidden gems, and eating things I can’t pronounce. 
-	  Whether it’s a weekend road trip or a far-flung adventure, I’m always plotting my next escape.   </p>
-	  
-	  <br> </br>
-	  
-      <p>  DIY Projects</p>
-	  
-	  <p>There’s a special pride in building or fixing something yourself—even if it takes three trips to the hardware store and a YouTube tutorial playing at 0.5x speed. 
-	  My projects range from "actually decent" to "well, it’s functional," but I love the process. </p>
-	  
-	  <br> </br>
-	  
-	  <p> Animals & Wildlife </p>
-	  
-	  <p> I’ve always been fascinated by monkeys—their intelligence, playfulness, and sheer chaos remind me of humans at our most unguarded. 
-	  Whether it’s watching capuchins solve puzzles or howler monkeys belt out their (surprisingly loud) calls, I could observe them for hours. </p>
-	  
-	  <p>My love for wildlife extends to the incredible biodiversity of South America—from the vibrant macaws of the Amazon to the elusive jaguars prowling the Pantanal. 
-	  If there’s a documentary or a chance to see these animals in person, I’m there. One day, I’d love to trek through the rainforest or volunteer at a conservation project. 
-	  Until then, I settle for obsessively following wildlife photographers and dreaming up future trips. </p>
-	  
-	  
     </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 My Portfolio</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  </div>
+</section>
+ 
+<section aria-labelledby="history">
+  <div class="wrap">
+    <h2 id="history">Where I've studied and worked</h2>
+    <ol class="history">
+      <li><time>2023 – 2027</time><div><strong>BSc (Hons) Computer Science, Ulster University</strong><span>Magee campus. On track for a First, Dean's List 2024/25. Final year: cyber security, concurrent and distributed systems, cloud operating systems, advanced mobile development.</span></div></li>
+      <li><time>Sep 2025 – Aug 2026</time><div><strong>OCS, Tesco store contract</strong><span>Housekeeping, then acting manager of a team of five while the store waited for a permanent manager.</span></div></li>
+      <li><time>Aug 2021 – Aug 2024</time><div><strong>Slieve Donard Hotel</strong><span>Kitchen porter, then banquet chef cooking for weddings and private events.</span></div></li>
+    </ol>
+  </div>
+</section>
+ 
+<section aria-labelledby="skills">
+  <div class="wrap">
+    <h2 id="skills">What I work with</h2>
+    <p class="sub">Java is my strongest language.</p>
+    <dl class="skills">
+      <dt>Languages</dt><dd>Java, C#, Python, SQL, JavaScript, HTML and CSS. Learning TypeScript.</dd>
+      <dt>Platforms</dt><dd>Android, React Native, Node.js, AWS, LLM APIs</dd>
+      <dt>Tools</dt><dd>Git and GitHub, IntelliJ, Android Studio, Visual Studio, DBeaver, Linux</dd>
+      <dt>Ways of working</dt><dd>Agile and Scrum, object-oriented design, UX design</dd>
+    </dl>
+  </div>
+</section>
+ 
+<section class="outside" aria-labelledby="outside">
+  <div class="wrap">
+    <h2 id="outside">Away from the keyboard</h2>
+    <p>I've worked in kitchens since I was 15 and still cook for fun. I'm a lifelong Everton fan. The gym clears my head and golf keeps me humble. I'm always planning the next trip, and one day I'd like to trek through a rainforest.</p>
+  </div>
+</section>
+ 
+<footer>
+  <div class="wrap"><div>
+    <p>Hiring for 2027? <a href="mailto:jennings-o3@ulster.ac.uk">jennings-o3@ulster.ac.uk</a></p>
+    <small>Based in Derry~Londonderry and open to relocating. Code on <a href="https://github.com/Odhran132">GitHub</a>.</small>
+  </div></div>
+</footer>
 </body>
 </html>
